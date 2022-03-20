@@ -29,51 +29,71 @@ card.run(function ($rootScope) {
 });
 
 card.controller('controller1', ($scope) => {
-        $scope.count = 1;
-        $scope.val = (count) => {
-                console.log("count val:" + count)
-                $scope.count = count;
-        };
+        $scope.quantity = 1;
+        // $scope.val_add = (quantity, get_id) => { $scope.quantity = quantity }
+        // $scope.val_sub = (quantity, get_id) => { $scope.quantity = quantity }
 
-        $scope.card_add = (get_id, get_Rs, get_name, get_img) => {
+        // $scope.val_add = (quantity, get_id) => {
+        //         $scope.quantity++;
+        //         console.log("quantity + val:" + $scope.quantity);
+        //         console.log("get_id val:" + get_id);
+        // };
 
-                $scope.total = $scope.count * get_Rs;
-                console.log("totalcount:" + $scope.total);
+        // $scope.val_sub = (quantity, get_id) => {
+        //         $scope.quantity = quantity;
+        //         if ($scope.quantity == 1) {
+        //                 $scope.quantity = "1";
+        //                 console.log("quantity - val:" + $scope.quantity);
+        //                 console.log("get_id val:" + get_id);
+        //         } else {
+        //                 $scope.quantity--;
+        //         }
+        // };
+        // $scope.quantity;
 
-                $scope.alltotal = $scope.total;
+        $scope.card_add = (data_add) => {
+                console.log('');
+                console.log("quantity:" + $scope.quantity);
+                $scope.quantity = $scope.quantity;
 
+                // add Arraydata
+                var Arraydata = angular.copy(data_add);
+                console.log(Arraydata);
+
+                // var element = {}, cart = [];
+                // element.quantity = $scope.quantity;
+                // cart.push({ element: element });
+                // cart.push(element);
+
+                // console.log("Arraydata" + cart);
+
+                $scope.addedglobalArray.push(Arraydata);
+
+                // for display total
+                $scope.alltotal = '';
                 angular.forEach($scope.addedglobalArray, function (item) {
-                        // Iterate over object keys
                         angular.forEach(item, function (value, key) {
                                 if (key == 'Rs') {
                                         console.log(key + "=" + value);
                                         $scope.alltotal = ($scope.alltotal * 1) + (value * 1);
                                 }
-                                // console.log(key + "=" + value);
                         });
                 });
                 console.log("alltotal find RS:" + $scope.alltotal);
-
-                $scope.val = $scope.alltotal;
-                $scope.global.push($scope.val);
-                console.log("push done" + $scope.val);
-
-                let last = $scope.global[$scope.global.length - 1];
-                console.log("get last val:" + last);
-
-                $scope.addedglobalArray.push({
-                        id: $scope.get_id = get_id,
-                        img: $scope.get_img = get_img,
-                        name: $scope.get_name = get_name,
-                        Rs: $scope.get_Rs = get_Rs,
-                        total: $scope.total,
-                });
         }
-});
-card.controller('controller2', ($scope) => {
-        $scope.Call = () => {
-                let last = $scope.global[$scope.global.length - 1];
-                console.log(" c2 val=last:" + last);
-                $scope.alltotal = last;
+
+        $scope.del = function (data_del) {
+                $scope.addedglobalArray.splice($scope.addedglobalArray.indexOf(data_del), 1);
+                // for display total
+                $scope.alltotal = '';
+                angular.forEach($scope.addedglobalArray, function (item) {
+                        angular.forEach(item, function (value, key) {
+                                if (key == 'Rs') {
+                                        console.log(key + "=" + value);
+                                        $scope.alltotal = ($scope.alltotal * 1) + (value * 1);
+                                }
+                        });
+                });
+                console.log("alltotal find RS:" + $scope.alltotal);
         }
 });

@@ -13,7 +13,7 @@
 
 </head>
 
-<body ng-app="data" ng-controller="controller1">
+<body ng-app="data">
   <div class="card-header">
     <div class="d-flex flex-column flex-md-row align-items-center">
       <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
@@ -25,8 +25,7 @@
         <a class="me-3 py-2 text-dark text-decoration-none" href="#">Support</a>
         <a ng-click="click()" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
           class="py-2 text-dark text-decoration-none" href="#">
-          <!-- <i class="bi bi-cart"></i> -->
-          <img src="./cart.svg" width="22" height="22" alt="">
+          <img src="./icons8-shopping-cart-66.png" width="22" height="22" alt="">
         </a>
       </nav>
     </div>
@@ -34,7 +33,7 @@
 
   <div class="container">
 
-    <div class="box">
+    <div class="box" ng-controller="controller1">
       <div class="card" ng-repeat="x in globalArray" style="width: 18rem;">
         <div class="imgbox">
           <img src="{{x.img}}" class="card-img-top " alt="...">
@@ -47,16 +46,16 @@
 
           <div class="add">
             <div class="row border-primary">
-              <!-- <div class="col" ng-click="val_sub(quantity = quantity-1,x.id)">-</div> -->
-              <div class="col" ng-click="quantity = quantity-1">-</div>
-              <div class="col" ng-model="countget">{{quantity}}</div>
-              <!-- <div class="col input-group-btn" ng-click="val_add(quantity= quantity+1,x.id)">+</div> -->
-              <div class="col input-group-btn" ng-click="quantity= quantity+1">+</div>
+              <div class="col" ng-click="val(
+                count = count-1
+                )">-</div>
+              <div class="col" ng-model="countget">{{count}}</div>
+              <div class="col input-group-btn" ng-click="val(count = count+1)">+</div>
             </div>
           </div>
           <!-- data-bs-toggle="modal" data-bs-target="#staticBackdrop" -->
           <a href="#" class="btn btn-primary" value="{{x.Rs}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-            ng-click="card_add(x)"> Add Card</a>
+            ng-click="card_add(x.id,x.Rs,x.name,x.img)"> Add Card</a>
           <a href="#" class="btn btn-primary">Buy Now</a>
 
         </div>
@@ -68,21 +67,21 @@
       <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
-          <div class="modal-content">
+          <div class="modal-content" ng-controller="controller2">
             <div class="modal-header">
               <h5 class="modal-title" id="staticBackdropLabel">card-body</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
+              <!--ng-init="arrayText=[
+              { id:'1', img : 'card.webp', name: 'Iphone 10' , Rs: '95000',total:'984294' }
+              ]" -->
               <div class="card-body" ng-repeat="val in addedglobalArray">
-                <div class="del" style="float: right;"><img ng-click="del(val)" src="./trash3.svg" width="22"
-                    height="22" alt=""></div>
                 <h5 class="card-title">{{val.name}}</h5>
                 <h6>RS {{val.Rs}}</h6>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                   card's content.</p>
-                <p>total quantity * RS :{{val.total}}</p>
+                <p>total RS :{{val.total}}</p>
                 <!-- <button type="button" class="btn btn-primary" ng-click="Call()">Buy Now</button> -->
               </div>
 
