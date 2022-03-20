@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./js/bootstrap.min.css">
+  <script src="./angular.min.js"></script>
+  <script src="./app.js"></script>
+
+</head>
+
+<body ng-app="data">
+  <div class="card-header">
+    <div class="d-flex flex-column flex-md-row align-items-center">
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <span class="fs-4"> Shopping Card</span>
+      </a>
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 text-dark text-decoration-none" href="#">Features</a>
+        <a class="me-3 py-2 text-dark text-decoration-none" href="#">Enterprise</a>
+        <a class="me-3 py-2 text-dark text-decoration-none" href="#">Support</a>
+        <a ng-click="click()" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+          class="py-2 text-dark text-decoration-none" href="#">
+          <img src="./icons8-shopping-cart-66.png" width="22" height="22" alt="">
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="box" ng-controller="controller1">
+      <div class="card" ng-repeat="x in globalArray" style="width: 18rem;">
+        <div class="imgbox">
+          <img src="{{x.img}}" class="card-img-top " alt="...">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{x.name}}</h5>
+          <h6>RS {{x.Rs}}</h6>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+
+          <div class="add">
+            <div class="row border-primary">
+              <div class="col" ng-click="val(
+                count = count-1
+                )">-</div>
+              <div class="col" ng-model="countget">{{count}}</div>
+              <div class="col input-group-btn" ng-click="val(count = count+1)">+</div>
+            </div>
+          </div>
+          <!-- data-bs-toggle="modal" data-bs-target="#staticBackdrop" -->
+          <a href="#" class="btn btn-primary" value="{{x.Rs}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+            ng-click="card_add(x.id,x.Rs,x.name,x.img)"> Add Card</a>
+          <a href="#" class="btn btn-primary">Buy Now</a>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="recodes">
+      <!-- Modal -->
+      <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+          <div class="modal-content" ng-controller="controller2">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">card-body</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!--ng-init="arrayText=[
+              { id:'1', img : 'card.webp', name: 'Iphone 10' , Rs: '95000',total:'984294' }
+              ]" -->
+              <div class="card-body" ng-repeat="val in addedglobalArray">
+                <h5 class="card-title">{{val.name}}</h5>
+                <h6>RS {{val.Rs}}</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <p>total RS :{{val.total}}</p>
+                <!-- <button type="button" class="btn btn-primary" ng-click="Call()">Buy Now</button> -->
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <p>total RS :<span></span> {{alltotal}}</p>
+              <button type=" button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" ng-click="Call()">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+  <script src="./js/popper.min.js"></script>
+</body>
+
+</html>

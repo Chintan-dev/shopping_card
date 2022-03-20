@@ -1,0 +1,18 @@
+
+trymyui.com
+pass
+pV3i6ugLGMUWZH3
+id chintu20111999@gmail.com
+
+app.run(function($rootScope)
+{
+    $rootScope.globalArray = [];
+    $rootScope.globalObject = {};
+});
+
+
+$scope.arr = ['GFG', 'GeeksForGeeks'];
+            $scope.val = "Geek";
+            $scope.push = function () {
+                $scope.arr.push($scope.val);
+            };
