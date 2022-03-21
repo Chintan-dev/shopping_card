@@ -47,16 +47,14 @@
 
           <div class="add">
             <div class="row border-primary">
-              <!-- <div class="col" ng-click="val_sub(quantity = quantity-1,x.id)">-</div> -->
-              <div class="col" ng-click="quantity = quantity-1">-</div>
-              <div class="col" ng-model="countget">{{quantity}}</div>
-              <!-- <div class="col input-group-btn" ng-click="val_add(quantity= quantity+1,x.id)">+</div> -->
-              <div class="col input-group-btn" ng-click="quantity= quantity+1">+</div>
+              <div class="col" ng-click="val_sub(quantity,x.id)">-</div>
+              <div class="col" ng-model="countget">{{quantity[x.id-1]}}</div>
+              <div class="col input-group-btn" ng-click="val_add(quantity,x.id)">+</div>
             </div>
           </div>
           <!-- data-bs-toggle="modal" data-bs-target="#staticBackdrop" -->
           <a href="#" class="btn btn-primary" value="{{x.Rs}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-            ng-click="card_add(x)"> Add Card</a>
+            ng-click="card_add(x,x.id,x.img,x.name,x.Rs,x.quantity,x.total_quantity_mul_Rs)"> Add Card</a>
           <a href="#" class="btn btn-primary">Buy Now</a>
 
         </div>
@@ -82,7 +80,8 @@
                 <h6>RS {{val.Rs}}</h6>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                   card's content.</p>
-                <p>total quantity * RS :{{val.total}}</p>
+                <p class="card-text">quantity = {{val.quantity}}</p>
+                <p>total quantity * RS :{{val.total_quantity_mul_Rs}}</p>
                 <!-- <button type="button" class="btn btn-primary" ng-click="Call()">Buy Now</button> -->
               </div>
 

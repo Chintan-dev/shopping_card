@@ -6,22 +6,30 @@ card.run(function ($rootScope) {
                         id: '1',
                         img: 'card.webp',
                         name: 'Iphone 10',
-                        Rs: '95000'
+                        Rs: '95000',
+                        quantity: '1',
+                        total_quantity_mul_Rs: ''
                 }, {
                         id: "2",
                         img: "0.jpg",
                         name: "Iphone 9",
-                        Rs: '85000'
+                        Rs: '85000',
+                        quantity: '1',
+                        total_quantity_mul_Rs: ''
                 }, {
                         id: "3",
                         img: "1.jpg",
                         name: "Iphone 8",
-                        Rs: '75000'
+                        Rs: '75000',
+                        quantity: '1',
+                        total_quantity_mul_Rs: ''
                 }, {
                         id: "4",
                         img: "2.jpg",
                         name: "Iphone 7",
-                        Rs: '75000'
+                        Rs: '75000',
+                        quantity: '1',
+                        total_quantity_mul_Rs: ''
                 }
         ];
         $rootScope.addedglobalArray = [];
@@ -29,51 +37,48 @@ card.run(function ($rootScope) {
 });
 
 card.controller('controller1', ($scope) => {
-        $scope.quantity = 1;
-        // $scope.val_add = (quantity, get_id) => { $scope.quantity = quantity }
-        // $scope.val_sub = (quantity, get_id) => { $scope.quantity = quantity }
+        console.log('');
+        $scope.quantity = [1, 1, 1, 1];
+        $scope.val_add = (quantity, get_id) => {
 
-        // $scope.val_add = (quantity, get_id) => {
-        //         $scope.quantity++;
-        //         console.log("quantity + val:" + $scope.quantity);
-        //         console.log("get_id val:" + get_id);
-        // };
+                $scope.quantity[get_id - 1]++;
+                console.log("quantity:" + $scope.quantity[get_id - 1]);
+                console.log("get_id:" + get_id);
+        };
 
-        // $scope.val_sub = (quantity, get_id) => {
-        //         $scope.quantity = quantity;
-        //         if ($scope.quantity == 1) {
-        //                 $scope.quantity = "1";
-        //                 console.log("quantity - val:" + $scope.quantity);
-        //                 console.log("get_id val:" + get_id);
-        //         } else {
-        //                 $scope.quantity--;
-        //         }
-        // };
-        // $scope.quantity;
 
-        $scope.card_add = (data_add) => {
+        $scope.val_sub = (quantity, get_id) => {
+                $scope.quantity = quantity;
+                if ($scope.quantity[get_id - 1] > 1) {
+                        $scope.quantity[get_id - 1]--;
+                        console.log("quantity:" + $scope.quantity[get_id - 1]);
+                }
+
+        };
+        $scope.quantity;
+
+        $scope.card_add = (data_add, get_id, get_img, get_name, get_Rs, get_quantity, total_quantity_mul_Rs) => {
                 console.log('');
-                console.log("quantity:" + $scope.quantity);
-                $scope.quantity = $scope.quantity;
+                console.log("quantity on addcard:" + $scope.quantity[get_id - 1]);
 
-                // add Arraydata
-                var Arraydata = angular.copy(data_add);
-                console.log(Arraydata);
+                var obj = {
+                        id: get_id,
+                        img: get_img,
+                        name: get_name,
+                        Rs: get_Rs,
+                        quantity: $scope.quantity[get_id - 1],
+                        total_quantity_mul_Rs: get_Rs * $scope.quantity[get_id - 1]
+                };
 
-                // var element = {}, cart = [];
-                // element.quantity = $scope.quantity;
-                // cart.push({ element: element });
-                // cart.push(element);
+                $scope.addedglobalArray.push(obj);
+                console.log($scope.addedglobalArray);
 
-                // console.log("Arraydata" + cart);
-
-                $scope.addedglobalArray.push(Arraydata);
 
                 // for display total
                 $scope.alltotal = '';
                 angular.forEach($scope.addedglobalArray, function (item) {
                         angular.forEach(item, function (value, key) {
-                                if (key == 'Rs') {
+                                if (key == 'total_quantity_mul_Rs') {
                                         console.log(key + "=" + value);
                                         $scope.alltotal = ($scope.alltotal * 1) + (value * 1);
                                 }
@@ -88,7 +93,7 @@ card.controller('controller1', ($scope) => {
                 $scope.alltotal = '';
                 angular.forEach($scope.addedglobalArray, function (item) {
                         angular.forEach(item, function (value, key) {
-                                if (key == 'Rs') {
+                                if (key == 'total_quantity_mul_Rs') {
                                         console.log(key + "=" + value);
                                         $scope.alltotal = ($scope.alltotal * 1) + (value * 1);
                                 }
@@ -97,3 +102,4 @@ card.controller('controller1', ($scope) => {
                 console.log("alltotal find RS:" + $scope.alltotal);
         }
 });
+
