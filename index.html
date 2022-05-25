@@ -14,7 +14,7 @@
 </head>
 
 <body ng-app="data" ng-controller="controller1">
-  <div class="card-header">
+  <div class="card-header sticky-top" style="background-color: rgb(255 255 255)">
     <div class="d-flex flex-column flex-md-row align-items-center">
       <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
         <span class="fs-4"> Shopping Card</span>
@@ -25,7 +25,6 @@
         <a class="me-3 py-2 text-dark text-decoration-none" href="#">Support</a>
         <a ng-click="click()" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
           class="py-2 text-dark text-decoration-none" href="#">
-          <!-- <i class="bi bi-cart"></i> -->
           <img src="./cart.svg" width="22" height="22" alt="">
         </a>
       </nav>
@@ -37,7 +36,7 @@
     <div class="box">
       <div class="card" ng-repeat="x in globalArray" style="width: 18rem;">
         <div class="imgbox">
-          <img src="{{x.img}}" class="card-img-top " alt="...">
+          <img src="./{{x.img}}" class="card-img-top " alt="...">
         </div>
         <div class="card-body">
           <h5 class="card-title">{{x.name}}</h5>
@@ -95,7 +94,6 @@
         </div>
       </div>
     </div>
-
   </div>
   <script src="./js/bootstrap.bundle.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
