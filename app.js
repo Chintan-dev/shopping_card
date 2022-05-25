@@ -4,28 +4,28 @@ card.run(function ($rootScope) {
         $rootScope.globalArray = [
                 {
                         id: '1',
-                        img: 'card.webp',
+                        img: './img/iphone 10.jpg',
                         name: 'Iphone 10',
                         Rs: '95000',
                         quantity: '1',
                         total_quantity_mul_Rs: ''
                 }, {
                         id: "2",
-                        img: "0.jpg",
+                        img: "./img/iphone 9.jpg",
                         name: "Iphone 9",
                         Rs: '85000',
                         quantity: '1',
                         total_quantity_mul_Rs: ''
                 }, {
                         id: "3",
-                        img: "1.jpg",
+                        img: "./img/iphone 8.AVIF",
                         name: "Iphone 8",
                         Rs: '75000',
                         quantity: '1',
                         total_quantity_mul_Rs: ''
                 }, {
                         id: "4",
-                        img: "2.jpg",
+                        img: "./img/iphone 7.jpg",
                         name: "Iphone 7",
                         Rs: '75000',
                         quantity: '1',
@@ -37,7 +37,7 @@ card.run(function ($rootScope) {
 });
 
 card.controller('controller1', ($scope) => {
-        console.log('');
+
         $scope.quantity = [1, 1, 1, 1];
         $scope.val_add = (quantity, get_id) => {
 
@@ -58,7 +58,6 @@ card.controller('controller1', ($scope) => {
         $scope.quantity;
 
         $scope.card_add = (data_add, get_id, get_img, get_name, get_Rs, get_quantity, total_quantity_mul_Rs) => {
-                console.log('');
                 console.log("quantity on addcard:" + $scope.quantity[get_id - 1]);
 
                 var obj = {
@@ -72,7 +71,6 @@ card.controller('controller1', ($scope) => {
 
                 $scope.addedglobalArray.push(obj);
                 console.log($scope.addedglobalArray);
-
 
                 // for display total
                 $scope.alltotal = '';
