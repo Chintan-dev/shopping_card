@@ -18,7 +18,7 @@ card.run(function ($rootScope) {
                         total_quantity_mul_Rs: ''
                 }, {
                         id: "3",
-                        img: "./img/iphone 8.AVIF",
+                        img: "./img/iphone 8.avif",
                         name: "Iphone 8",
                         Rs: '75000',
                         quantity: '1',
