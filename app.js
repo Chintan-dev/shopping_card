@@ -97,6 +97,7 @@ card.controller('controller1', ($scope) => {
                                 }
                         });
                 });
+                $scope.quantity[get_id - 1] = 1;
                 console.log("alltotal find RS:" + $scope.alltotal);
         }
 });
